@@ -5,6 +5,7 @@ from api.views import (
     BeerFamilyListCreateView,
     BeerFilteringListCreateView,
     BeerHopListCreateView,
+    BeerSchoolListCreateView,
 )
 
 
@@ -28,5 +29,10 @@ urlpatterns = [
         "beerhop",
         BeerHopListCreateView.as_view(),
         name="beerhoplistcreate",
+    ),
+    path(
+        "beerschool",
+        BeerSchoolListCreateView.as_view(),
+        name="beerschoollistcreate",
     ),
 ]
