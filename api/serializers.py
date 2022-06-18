@@ -14,7 +14,7 @@ from api.models import (
 class BeerCerealSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerCereal
-        fields = ("name",)
+        fields = "__all__"
 
 
 class BeerSerializer(serializers.ModelSerializer):
@@ -26,13 +26,13 @@ class BeerSerializer(serializers.ModelSerializer):
 class BeerFamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerFamily
-        fields = ("name",)
+        fields = "__all__"
 
 
 class BeerFilteringSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerFiltering
-        fields = ("name",)
+        fields = "__all__"
 
 
 class BeerHopSerializer(serializers.ModelSerializer):
@@ -44,10 +44,10 @@ class BeerHopSerializer(serializers.ModelSerializer):
 class BeerSchoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerSchool
-        fields = ("name",)
+        fields = "__all__"
 
 
 class BeerYeastSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerYeast
-        fields = ("name",)
+        fields = "__all__"
