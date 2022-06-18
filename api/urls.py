@@ -1,6 +1,17 @@
 from django.urls import path
-from api.views import BeerListCreateView
+
+from api.views import BeerCerealListCreateView, BeerFamilyListCreateView
+
 
 urlpatterns = [
-    path("", BeerListCreateView.as_view(), name="beerlistcreate"),
+    path(
+        "beercereal",
+        BeerCerealListCreateView.as_view(),
+        name="beercereallistcreate",
+    ),
+    path(
+        "beerfamily",
+        BeerFamilyListCreateView.as_view(),
+        name="beerfamilylistcreate",
+    ),
 ]
