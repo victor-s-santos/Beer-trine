@@ -38,7 +38,7 @@ class BeerFilteringSerializer(serializers.ModelSerializer):
 class BeerHopSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerHop
-        fields = ("name",)
+        fields = "__all__"
 
 
 class BeerSchoolSerializer(serializers.ModelSerializer):
