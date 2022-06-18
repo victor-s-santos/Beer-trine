@@ -45,6 +45,45 @@ class BeerCerealListCreateView(generics.ListCreateAPIView):
         )
 
 
+class BeerCerealRetrieveUpdateDestroyView(
+    generics.RetrieveUpdateDestroyAPIView
+):
+    def get(self, request: dict, beer_id: int = None) -> Response:
+        try:
+            beer_cereal_detail = BeerCereal.objects.get(id=beer_id)
+        except BeerCereal.DoesNotExist:
+            return Response(
+                "BeerCereal does not exist.", status=status.HTTP_400_BAD_REQUEST
+            )
+        serializer_class = BeerCerealSerializer(beer_cereal_detail, many=False)
+        return Response(serializer_class.data, status=status.HTTP_200_OK)
+
+    def patch(self, request: dict, beer_id: int = None) -> Response:
+        try:
+            beer_cereal_detail = BeerCereal.objects.get(id=beer_id)
+        except BeerCereal.DoesNotExist:
+            return Response(
+                "BeerCereal does not exist.", status=status.HTTP_400_BAD_REQUEST
+            )
+        context = {
+            "name": request.query_params.get("name", None)
+            or BeerCereal.objects.get(id=beer_id).name,
+            "descritpion": request.query_params.get("description", None)
+            or BeerCereal.objects.get(id=beer_id).description,
+        }
+        serializer_class = BeerCerealSerializer(
+            beer_cereal_detail, data=request.data, partial=True
+        )
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return Response(
+                serializer_class.data, status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer_class.errors, status=status.HTTP_400_BAD_REQUEST
+        )
+
+
 class BeerFamilyListCreateView(generics.ListCreateAPIView):
     def get(self, request: dict) -> Response:
         queryset = BeerFamily.objects.all()
