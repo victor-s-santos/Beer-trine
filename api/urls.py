@@ -2,6 +2,7 @@ from django.urls import path
 
 from api.views import (
     BeerCerealListCreateView,
+    BeerCerealRetrieveUpdateDestroyView,
     BeerFamilyListCreateView,
     BeerFilteringListCreateView,
     BeerHopListCreateView,
@@ -16,6 +17,11 @@ urlpatterns = [
         "beercereal",
         BeerCerealListCreateView.as_view(),
         name="beercereallistcreate",
+    ),
+    path(
+        "beercereal/<int:beer_id>/",
+        BeerCerealRetrieveUpdateDestroyView.as_view(),
+        name="beercerealretrieveupdatedestroy",
     ),
     path(
         "beerfamily",
