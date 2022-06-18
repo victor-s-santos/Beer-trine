@@ -157,3 +157,26 @@ class BeerYeastListCreateView(generics.ListCreateAPIView):
         return Response(
             serializer_class.errors, status=status.HTTP_400_BAD_REQUEST
         )
+
+
+class BeerListCreateView(generics.ListCreateAPIView):
+    def get(self, request: dict) -> Response:
+        queryset = Beer.objects.all()
+        serializer_class = BeerSerializer(queryset, many=True)
+        if len(serializer_class.data) == 0:
+            return Response(
+                "There are no Beer recorded.",
+                status=status.HTTP_200_OK,
+            )
+        return Response(serializer_class.data, status=status.HTTP_200_OK)
+
+    def post(self, request: dict) -> Response:
+        serializer_class = BeerSerializer(data=request.data)
+        if serializer_class.is_valid():
+            serializer_class.save()
+            return Response(
+                serializer_class.data, status=status.HTTP_201_CREATED
+            )
+        return Response(
+            serializer_class.errors, status=status.HTTP_400_BAD_REQUEST
+        )
