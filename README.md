@@ -20,8 +20,5 @@ Construção de uma api simples, utilizando django e django rest framework, para
     5. Rode as migrações
         - python manage.py migrate
 
-    6. Execute os testes
-        - pytest -v
-
-    7. Suba o servidor
+    6. Suba o servidor
         - python manage.py runserver
