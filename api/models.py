@@ -2,70 +2,54 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 
-class BeerSchool(models.Model):
+class BaseBeer(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
 
+    class Meta:
+        abstract = True
+
+
+class BeerSchool(BaseBeer):
     class Meta:
         verbose_name = "school"
         verbose_name_plural = "schools"
 
 
-class BeerHop(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerHop(BaseBeer):
     class Meta:
         verbose_name = "hop"
         verbose_name_plural = "hops"
 
 
-class BeerFamily(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerFamily(BaseBeer):
     class Meta:
         verbose_name = "family"
         verbose_name_plural = "families"
 
 
-class BeerYeast(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerYeast(BaseBeer):
     class Meta:
         verbose_name = "yeast"
         verbose_name_plural = "yeasts"
 
 
-class BeerFiltering(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerFiltering(BaseBeer):
     class Meta:
         verbose_name = "filterings"
         verbose_name_plural = "filtrations"
 
 
-class BeerCereal(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerCereal(BaseBeer):
     class Meta:
         verbose_name = "cereal"
         verbose_name_plural = "cereals"
 
 
-class BeerStyle(models.Model):
-    name = models.CharField(max_length=200)
-    description = models.TextField()
-
+class BeerStyle(BaseBeer):
     class Meta:
         verbose_name = "style"
         verbose_name_plural = "styles"
-
-
-# To Do - use abstract models to avoid repetition in cereals, family, yeast, filtering
 
 
 class Beer(models.Model):
