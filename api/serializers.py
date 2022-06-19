@@ -7,6 +7,7 @@ from api.models import (
     BeerFiltering,
     BeerHop,
     BeerSchool,
+    BeerStyle,
     BeerYeast,
 )
 
@@ -50,4 +51,10 @@ class BeerSchoolSerializer(serializers.ModelSerializer):
 class BeerYeastSerializer(serializers.ModelSerializer):
     class Meta:
         model = BeerYeast
+        fields = "__all__"
+
+
+class BeerStyleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BeerStyle
         fields = "__all__"
