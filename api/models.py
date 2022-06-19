@@ -56,11 +56,21 @@ class BeerCereal(models.Model):
         verbose_name_plural = "cereals"
 
 
+class BeerStyle(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+
+    class Meta:
+        verbose_name = "style"
+        verbose_name_plural = "styles"
+
+
 # To Do - use abstract models to avoid repetition in cereals, family, yeast, filtering
 
 
 class Beer(models.Model):
     name = models.CharField(max_length=200)
+    description = models.TextField()
     water_percentage = models.IntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)]
     )
@@ -70,6 +80,9 @@ class Beer(models.Model):
     yeast = models.ForeignKey(BeerYeast, on_delete=models.SET_NULL, null=True)
     filtering = models.ForeignKey(
         BeerFiltering, on_delete=models.SET_NULL, null=True
+    )
+    beerstyle = models.ForeignKey(
+        BeerStyle, on_delete=models.SET_NULL, null=True
     )
     cereals = models.ManyToManyField(BeerCereal)
 
